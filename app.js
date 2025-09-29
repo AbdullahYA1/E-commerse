@@ -33,12 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <div class="product-price">$${product.price.toFixed(2)}</div>
-                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                        <button class="add-to-cart" onclick="addToCart(${product.id})" data-translate="addToCart">
                             Add to Cart
                         </button>
                     </div>
                 </div>
             `).join('');
+            
+            // Update translations for dynamically created elements
+            if (window.updateTranslations) {
+                window.updateTranslations();
+            }
         }
     }
 
@@ -54,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         updateCart();
-        showToast(`${product.name} added to cart!`);
+        const translatedMessage = `${product.name} ${window.getTranslation ? window.getTranslation('productAdded') : 'added to cart!'}`;
+        showToast(translatedMessage);
     };
 
     // Show toast notification
@@ -115,10 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update cart items
         if (cartItems) {
             if (cart.length === 0) {
+                const emptyMessage = window.getTranslation ? window.getTranslation('cartEmpty') : 'Your cart is empty';
                 cartItems.innerHTML = `
                     <div class="empty-cart">
                         <i class="fa fa-shopping-bag"></i>
-                        <p>Your cart is empty</p>
+                        <p>${emptyMessage}</p>
                     </div>
                 `;
                 if (cartTotal) cartTotal.style.display = 'none';
@@ -145,6 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    // Make updateCart globally accessible for translations
+    window.updateCart = updateCart;
 
     // Cart sidebar controls
     if (cartBtn) {
@@ -201,7 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = e.target.querySelector('input').value;
-            alert(`Thank you for subscribing with email: ${email}`);
+            const successMessage = window.getTranslation ? window.getTranslation('subscribeSuccess') : 'Thank you for subscribing to our newsletter!';
+            showToast(successMessage);
             e.target.reset();
         });
     }

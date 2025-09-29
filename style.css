@@ -98,6 +98,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+.login-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form{
+  background-color: #e9ecef;
+  width: 70%;
+  max-width: 400px;
+  display: block;
+}
 
 .search-box {
     width: 90%;
@@ -242,6 +261,7 @@ body {
     background: #f8f9fa;
     overflow: hidden;
     position: relative;
+    padding-right: 5px;
 }
 
 .product-image img {
@@ -656,3 +676,68 @@ body {
 .toast.bg-success .toast-header {
     background: #198754;
 }
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-right {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-content {
+    direction: rtl;
+}
+
+[dir="rtl"] .cart-sidebar {
+    right: auto;
+    left: -400px;
+}
+
+[dir="rtl"] .cart-sidebar.open {
+    left: 0;
+    right: auto;
+}
+
+[dir="rtl"] .search-close {
+    right: auto;
+    left: 40px;
+}
+
+[dir="rtl"] .cart-count {
+    right: auto;
+    left: -8px;
+}
+
+[dir="rtl"] .toast-container {
+    left: 0;
+    right: auto;
+}
+
+[dir="rtl"] .hero-content,
+[dir="rtl"] .about-content,
+[dir="rtl"] .newsletter {
+    text-align: center;
+}
+
+/* Language toggle button */
+#languageToggle {
+    border: 1px solid #000;
+    color: #000;
+    background: transparent;
+    font-size: 12px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+#languageToggle:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Media Queries */

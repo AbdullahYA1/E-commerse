@@ -15,12 +15,15 @@
             <div class="logo">hashPlus</div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#products">Shop</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#products" data-translate="shop">Shop</a></li>
+                    <li><a href="#about" data-translate="about">About</a></li>
+                    <li><a href="#contact" data-translate="contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="nav-right">
+                <button class="btn btn-outline-dark btn-sm me-2" id="languageToggle" onclick="toggleLanguage()" title="Switch Language">
+                    العربية
+                </button>
                 <div class="search-container">
                     <button class="search-btn" id="searchBtn">
                         <i class="fa fa-search"></i>
@@ -37,7 +40,7 @@
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput" data-translate="searchPlaceholder">
         </div>
         <button class="search-close" id="searchClose">&times;</button>
     </div>
@@ -45,17 +48,47 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Premium hashPlus</h1>
-            <p>Handcrafted with the finest ingredients, baked fresh daily for the ultimate indulgence.</p>
-            <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+            <h1 data-translate="heroTitle">Premium hashPlus</h1>
+            <p data-translate="heroSubtitle">Handcrafted with the finest ingredients, baked fresh daily for the ultimate indulgence.</p>
+            <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" data-translate="exploreCollection">
                 Explore Collection
             </button>
         </div>
     </section>
-
+ <!-- Login Modal -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <div class="login-header">
+                <h3 data-translate="login">Login</h3>
+                <button class="login-close" id="loginClose">&times;</button>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail" data-translate="email">Email</label>
+                    <input type="email" id="loginEmail" class="form-input" required data-translate="emailPlaceholder" placeholder="Your email address">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword" data-translate="password">Password</label>
+                    <input type="password" id="loginPassword" class="form-input" required data-translate="passwordPlaceholder" placeholder="Your password">
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        <span data-translate="rememberMe">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" data-translate="forgotPassword">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn-submit" data-translate="loginButton">Login</button>
+                <div class="login-footer">
+                    <p><span data-translate="noAccount">Don't have an account?</span> <a href="#" data-translate="signUp">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Products Section -->
     <section class="products" id="products">
-        <h2 class="section-title">Our Collection</h2>
+        <h2 class="section-title" data-translate="ourCollection">Our Collection</h2>
         <div class="products-grid" id="productsGrid">
             <!-- Products will be dynamically loaded here -->
         </div>
@@ -64,18 +97,18 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-content">
-            <h2>About hashPlus</h2>
-            <p>We believe in the art of traditional baking combined with modern innovation. Each M3mol is carefully crafted using premium ingredients and time-honored techniques, creating an extraordinary experience that delights all the senses.</p>
+            <h2 data-translate="aboutTitle">About hashPlus</h2>
+            <p data-translate="aboutText">We believe in the art of traditional baking combined with modern innovation. Each M3mol is carefully crafted using premium ingredients and time-honored techniques, creating an extraordinary experience that delights all the senses.</p>
         </div>
     </section>
 
     <!-- Newsletter -->
     <section class="newsletter">
-        <h3>Stay Updated</h3>
-        <p>Be the first to know about new flavors and special offers.</p>
+        <h3 data-translate="stayUpdated">Stay Updated</h3>
+        <p data-translate="newsletterText">Be the first to know about new flavors and special offers.</p>
         <form class="newsletter-form" id="newsletterForm">
-            <input type="email" class="newsletter-input" placeholder="Your email address" required>
-            <button type="submit" class="newsletter-btn">Subscribe</button>
+            <input type="email" class="newsletter-input" placeholder="Your email address" data-translate="emailPlaceholder" required>
+            <button type="submit" class="newsletter-btn" data-translate="subscribe">Subscribe</button>
         </form>
     </section>
 
@@ -83,35 +116,35 @@
     <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Customer Service</h4>
-                <a href="#">Shipping & Returns</a>
-                <a href="#">Size Guide</a>
-                <a href="#">Contact Us</a>
-                <a href="#">FAQ</a>
+                <h4 data-translate="customerService">Customer Service</h4>
+                <a href="#" data-translate="shippingReturns">Shipping & Returns</a>
+                <a href="#" data-translate="sizeGuide">Size Guide</a>
+                <a href="#" data-translate="contactUs">Contact Us</a>
+                <a href="#" data-translate="faq">FAQ</a>
             </div>
             <div class="footer-section">
-                <h4>Company</h4>
-                <a href="#">About Us</a>
-                <a href="#">Careers</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <h4 data-translate="company">Company</h4>
+                <a href="#" data-translate="aboutUs">About Us</a>
+                <a href="#" data-translate="careers">Careers</a>
+                <a href="#" data-translate="privacyPolicy">Privacy Policy</a>
+                <a href="#" data-translate="termsOfService">Terms of Service</a>
             </div>
             <div class="footer-section">
-                <h4>Connect</h4>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Newsletter</a>
+                <h4 data-translate="connect">Connect</h4>
+                <a href="#" data-translate="instagram">Instagram</a>
+                <a href="#" data-translate="facebook">Facebook</a>
+                <a href="#" data-translate="twitter">Twitter</a>
+                <a href="#" data-translate="newsletter">Newsletter</a>
             </div>
             <div class="footer-section">
-                <h4>Contact</h4>
+                <h4 data-translate="contactTitle">Contact</h4>
                 <a href="tel:+1234567890">+1 (234) 567-890</a>
                 <a href="mailto:hello@m3mol.com">hello@hashPlus.com</a>
-                <a href="#">Live Chat</a>
+                <a href="#" data-translate="liveChat">Live Chat</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 hashPlus. All rights reserved.</p>
+            <p>&copy; 2025 hashPlus. <span data-translate="rightsReserved">All rights reserved</span>.</p>
         </div>
     </footer>
 
@@ -119,21 +152,20 @@
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3>Shopping Cart</h3>
+            <h3 data-translate="shoppingCart">Shopping Cart</h3>
             <button class="cart-close" id="cartCloseBtn">&times;</button>
         </div>
         <div class="cart-items" id="cartItems">
             <div class="empty-cart">
                 <i class="fa fa-shopping-bag"></i>
-                <p>Your cart is empty</p>
+                <p data-translate="cartEmpty">Your cart is empty</p>
             </div>
         </div>
         <div class="cart-total" id="cartTotal" style="display: none;">
-            <div class="total-amount">Total: $<span id="totalAmount">0.00</span></div>
-            <button class="checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+            <div class="total-amount"><span data-translate="total">Total</span>: $<span id="totalAmount">0.00</span></div>
+            <button class="checkout-btn" onclick="window.location.href='checkout.html'" data-translate="checkout">Checkout</button>
         </div>
     </div>
-
     <!-- Toast Container -->
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999">
         <div id="cartToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -149,7 +181,14 @@
     
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translations.js"></script>
     <script src="app.js"></script>
     <script src="data.js"></script>
+    <script>
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLanguage();
+        });
+    </script>
 </body>
 </html>
