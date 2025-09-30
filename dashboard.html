@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Dashboard - hashPlus Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky pt-3">
+                    <h5 class="text-center mb-4">hashPlus Admin</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#products" onclick="showSection('products')">
+                                <i class="fas fa-box"></i> Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#orders" onclick="showSection('orders')">
+                                <i class="fas fa-shopping-cart"></i> Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="window.location.href='index.html'">
+                                <i class="fas fa-home"></i> Back to Store
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+
+                <!-- Products Section -->
+                <div id="products-section" class="section active">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Products Management</h3>
+                        <button class="btn btn-primary" onclick="showAddProductForm()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+
+                    <!-- Add/Edit Product Form -->
+                    <div id="product-form" class="card mb-4" style="display: none;">
+                        <div class="card-header">
+                            <h5 id="form-title">Add New Product</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="productForm">
+                                <input type="hidden" id="productId">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="productName" class="form-label">Product Name</label>
+                                            <input type="text" class="form-control" id="productName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="productPrice" class="form-label">Price</label>
+                                            <input type="number" class="form-control" id="productPrice" step="0.01" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productImage" class="form-label">Image URL</label>
+                                    <input type="text" class="form-control" id="productImage">
+                                </div>
+                                <button type="submit" class="btn btn-success me-2">Save Product</button>
+                                <button type="button" class="btn btn-secondary" onclick="hideProductForm()">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Products Table -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="products-table">
+                                        <!-- Products will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="orders-section" class="section">
+                    <h3>Orders Management</h3>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Order #</th>
+                                            <th>Customer Name</th>
+                                            <th>Date</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orders-table">
+                                        <!-- Orders will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="orderModalBody">
+                    <!-- Order details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
